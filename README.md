@@ -2,14 +2,16 @@
 
 A JavaScript workaround for **Jellyfin 10.11.x**, where right-clicking (RMB / PPM) opens **Multi Select** instead of the normal **More (...)** context menu.
 
-This script intercepts the right mouse button and opens the same menu as clicking the `...` button on cards, movies, TV shows, seasons, and episodes.
+This script intercepts right-click behavior on Jellyfin item cards and opens the same menu as clicking the `...` button.
 
 ---
 
 ## Features
 
-* ✅ Right-click opens the **More (...)** menu
+* ✅ Right-click opens the **More (...)** menu on Jellyfin items
 * ✅ `Ctrl + Right Click` keeps Jellyfin's original **Multi Select**
+* ✅ `Shift + Right Click` opens the browser's native context menu
+* ✅ Right-click on empty background/slider space opens the browser's native context menu
 * ✅ Works with:
 
   * Libraries
@@ -21,7 +23,6 @@ This script intercepts the right mouse button and opens the same menu as clickin
 
   * Jellyfin Web
   * Jellyfin Desktop
-* ✅ Ignores Editor's Choice carousel
 * ✅ No Jellyfin core modifications required
 
 ---
@@ -39,7 +40,7 @@ Supported versions:
 * Jellyfin 10.11.x
 * Jellyfin 10.10.7
 
-The plugin allows injecting custom JavaScript directly into the Jellyfin Web UI without modifying `index.html`.
+The plugin allows injecting custom JavaScript directly into the Jellyfin Web UI without manually editing Jellyfin's frontend files.
 
 ---
 
@@ -49,7 +50,7 @@ The plugin allows injecting custom JavaScript directly into the Jellyfin Web UI 
 
 Open:
 
-```
+```text
 Dashboard
 └── Plugins
     └── Catalog
@@ -82,7 +83,7 @@ Save the repository.
 
 Go back to:
 
-```
+```text
 Dashboard
 └── Plugins
     └── Catalog
@@ -112,7 +113,7 @@ services:
       - /config/index.html:/usr/share/jellyfin/web/index.html
 ```
 
-This is recommended to avoid permission problems when injecting scripts.
+This may help avoid permission issues when the plugin injects scripts into Jellyfin Web.
 
 ---
 
@@ -120,7 +121,7 @@ This is recommended to avoid permission problems when injecting scripts.
 
 Open:
 
-```
+```text
 Dashboard
 └── Plugins
     └── JavaScript Injector
@@ -154,8 +155,28 @@ or clear the browser cache if the changes do not appear immediately.
 
 # Usage
 
-| Action             | Result                    |
-| ------------------ | ------------------------- |
-| Right Click        | Opens More (...) menu     |
-| Ctrl + Right Click | Multi Select              |
-| Left Click         | Default Jellyfin behavior |
+| Action                                      | Result                         |
+| ------------------------------------------- | ------------------------------ |
+| Right Click on an item                      | Opens Jellyfin More (...) menu |
+| Right Click on background/empty slider area | Opens browser context menu     |
+| Ctrl + Right Click                          | Jellyfin Multi Select          |
+| Shift + Right Click                         | Browser native context menu    |
+
+---
+
+# Notes
+
+This is only a temporary workaround for the Jellyfin 10.11.x right-click behavior issue.
+
+The script does not modify Jellyfin core files and can be disabled or removed at any time from the JavaScript Injector plugin settings.
+
+---
+
+# Credits
+
+* Jellyfin Team
+* n00bcodr for the JavaScript Injector plugin
+
+Plugin repository:
+
+https://github.com/n00bcodr/Jellyfin-JavaScript-Injector
